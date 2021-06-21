@@ -1,0 +1,60 @@
+﻿@using TravelTrip.Utils
+@using TravelTrip.Models.EntityFramework
+@model List<Blogs>
+
+@{
+    ViewBag.Title = ViewBag.Category;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Action("Slider", "PartialView")
+
+<div class="blog-wrapper section-padding-100 clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                @if (Model.Count() == 0)
+                {
+                    <h3>@ViewBag.Category kategorisine ait blog bulunmamaktadır.</h3>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-thumbnail">
+                                        <img src="@item.Image" alt="">
+                                        <div class="post-date">
+                                            <a href="#">@item.Date.ToString("dd") <span>@item.Date.ToString("MMMM")</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <!-- Blog Content -->
+                                    <div class="single-blog-content">
+                                        <div class="line"></div>
+                                        <a href="#" class="post-tag">@item.Categories.Hood</a>
+                                        <h4><a href="/Blog/Details/@item.ID" class="post-headline">@item.Hood</a></h4>
+                                        <p>@item.Explanation.Substring(0, 100)...</p>
+                                        <div class="post-meta">
+                                            <p><a href="@item.WriterID">@item.Writers.Name @item.Writers.SurName</a> Tarafından</p>
+                                            <p>@item.Comments.Where(x => x.BlogID == item.ID).Count() yorum</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="load-more-btn mt-100 wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1000ms">
+                        <a href="/Home/Index/" class="btn original-btn">Devamını Oku</a>
+                    </div>
+
+                }
+            </div>
+            @Html.Partial("~/Views/Shared/Partial/_PartialSidebar.cshtml")
+        </div>
+    </div>
+</div>

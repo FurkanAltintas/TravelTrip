@@ -1,0 +1,60 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Blogs>
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 0;
+}
+
+<table align="center" class="table table-bordered">
+    <thead>
+        <tr align="center">
+            <th>#</th>
+            <th>BAŞLIK</th>
+            <th>AÇIKLAMA</th>
+            <th>RESİM</th>
+            <th>TARİH</th>
+            <th>DURUM</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr align="center">
+                <td style="vertical-align: inherit;">@i</td>
+                <td style="vertical-align: inherit;">@item.Hood</td>
+                <td style="vertical-align: inherit;">@item.Explanation.Substring(0, 100)</td>
+                <td style="vertical-align: inherit;"><img src="@item.Image" style="height: 29px; width: 29px;" /></td>
+                <td style="vertical-align: inherit;">@item.Date.ToString("dd-MM-yyyy")</td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="badge bg-success">YAYINDA</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">KALDIRILDI</span>
+                    }
+                </td>
+                <td style="vertical-align: inherit;">
+                    <a href="/Admin/BlogDetails/@item.ID" class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="/Admin/BlogUpdate/@item.ID" class="btn btn-success">
+                        <i class="fas fa-pen-alt"></i>
+                    </a>
+                    <a href="/Admin/BlogDelete/@item.ID" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("BlogAdd","Admin")" class="form-control btn btn-success">
+    <i class="fas fa-plus"></i>
+</a>

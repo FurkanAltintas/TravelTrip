@@ -1,0 +1,50 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Sliders>
+
+@{
+    ViewBag.Title = "Slider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+}
+
+<table align="center" class="table table-bordered">
+    <thead>
+        <tr align="center">
+            <th>#</th>
+            <th>BAŞLIK</th>
+            <th>ALT BAŞLIK</th>
+            <th>RESİM</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr align="center">
+                <td style="vertical-align: inherit;">@i</td>
+                <td style="vertical-align: inherit;">@item.Hood</td>
+                <td style="vertical-align: inherit;">@item.SubTitle</td>
+                <td style="vertical-align: inherit;"><img src="@item.Image" style="height: 29px; width: 29px;" /></td>
+                <td style="vertical-align: inherit;">
+                    <a href="/Admin/SliderDetails/@item.ID" class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="/Admin/SliderUpdate/@item.ID" class="btn btn-success">
+                        <i class="fas fa-pen-alt"></i>
+                    </a>
+                    <a href="/Admin/SliderDelete/@item.ID" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("SliderAdd","Admin")" class="form-control btn btn-success">
+    <i class="fas fa-plus"></i>
+</a>
+
+

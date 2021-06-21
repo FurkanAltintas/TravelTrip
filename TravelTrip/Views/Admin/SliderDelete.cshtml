@@ -1,0 +1,17 @@
+﻿@model TravelTrip.Models.EntityFramework.Sliders
+
+@{
+    ViewBag.Title = "Slider Sil";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("SliderDelete", "Admin", FormMethod.Post))
+{
+    <div align="center" class="form-group">
+        <h3><b>@Model.Hood</b></h3>
+        <h5>@Model.SubTitle</h5>
+        <img style="width: 1000px; height: auto;" src="@Model.Image" />
+        <button type="submit" style="margin-top: 10px; width: 1000px; height: auto;" class="btn btn-danger">SİL</button>
+    </div>
+}
+

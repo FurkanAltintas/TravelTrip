@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3945df03b25a41eeb2e4fb5d19223cd3" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelSiteModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.AboutUs" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Admins" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Categories" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Contacts" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Footers" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Indices" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Member" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Sliders" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelSiteModel.Writers" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="TravelSiteModel.Blogs" Width="1.5" PointX="9" PointY="0.75" />
+        <AssociationConnector Association="TravelSiteModel.FK_Blogs_Categories" />
+        <AssociationConnector Association="TravelSiteModel.FK_dbo_Blogs_dbo_Writers_WriterID" />
+        <EntityTypeShape EntityType="TravelSiteModel.Comments" Width="1.5" PointX="11.25" PointY="0.75" />
+        <AssociationConnector Association="TravelSiteModel.FK_dbo_Comments_dbo_Blogs_Blog_ID" />
+        <AssociationConnector Association="TravelSiteModel.FK_Comments_Member" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

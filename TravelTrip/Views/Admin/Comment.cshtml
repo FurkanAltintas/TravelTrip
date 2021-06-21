@@ -1,0 +1,74 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Comments>
+
+@{
+    ViewBag.Title = "Yorumlar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+}
+
+<table align="center" class="table table-bordered">
+    <thead>
+        <tr align="center">
+            <th>#</th>
+            <th>BLOG</th>
+            <th>ÜYE</th>
+            <th>KONU</th>
+            <th>MESAJ</th>
+            <th>TARİH</th>
+            <th>DURUM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr align="center">
+                <td style="vertical-align: inherit;">@i</td>
+                <td style="vertical-align: inherit;">@item.Blogs.Hood</td>
+                <td style="vertical-align: inherit;">@item.Member.name @item.Member.surname</td>
+                <td style="vertical-align: inherit;">@item.Message</td>
+                <td style="vertical-align: inherit;">@item.Date.Value.ToString("dd-MMM-yyyyy")</td>
+                <td>
+                    @if (item.status == true)
+                    {
+                        <span class="badge bg-success">YAYINDA</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">ONAY BEKLİYOR</span>
+                    }
+                </td>
+                <td style="vertical-align: inherit;">
+                    @if (item.status == true)
+                    {
+                        <a href="/Admin/CommentActive/@item.ID" class="btn btn-warning">
+                            <i class="fas fa-thumbs-up"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/CommentActive/@item.ID" class="btn btn-warning">
+                            <i class="fas fa-thumbs-down"></i>
+                        </a>
+                    }
+                    <a href="/Admin/CommentDetails/@item.ID" class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="/Admin/CommentUpdate/@item.ID" class="btn btn-success">
+                        <i class="fas fa-pen-alt"></i>
+                    </a>
+                    <a href="/Admin/CommentDelete/@item.ID" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("CommentAdd","Admin")" class="form-control btn btn-success">
+    <i class="fas fa-plus"></i>
+</a>
+

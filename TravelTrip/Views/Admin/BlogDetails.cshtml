@@ -1,0 +1,96 @@
+﻿@model TravelTrip.Models.EntityFramework.Blogs
+
+@{
+    ViewBag.Title = "Blog Detay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Hood, "BAŞLIK")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-heading"></i>
+            </span>
+        </div>
+        @Html.TextBoxFor(model => model.Hood, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Hood, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Categories.Hood, "ALT BAŞLIK")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-flag"></i>
+            </span>
+        </div>
+        @Html.TextBoxFor(model => model.Categories.Hood, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Categories.Hood, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Explanation, "İÇERİK")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-file"></i>
+            </span>
+        </div>
+        @Html.TextAreaFor(model => model.Explanation, 10, 1, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Image, "GÖRSEL")
+    <div class="input-group">
+        @Html.TextBoxFor(model => model.Image, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Date, "YAYINLANMA TARİHİ")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+        @Html.TextBoxFor(model => model.Date, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Date, "YAZAR AD")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-user"></i>
+            </span>
+        </div>
+        @Html.TextBoxFor(model => model.Writers.Name, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Date, "YAZAR SOYAD")
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-user"></i>
+            </span>
+        </div>
+        @Html.TextBoxFor(model => model.Writers.SurName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    <a href="@Url.Action("Blog","Admin")" class="btn btn-danger form-control">GERİYE DÖN</a>
+</div>

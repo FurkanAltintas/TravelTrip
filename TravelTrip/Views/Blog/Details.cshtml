@@ -1,0 +1,160 @@
+﻿@model TravelTrip.Models.BlogComment
+
+@{
+    ViewBag.Title = ViewBag.Hood;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="single-blog-wrapper section-padding-0-100">
+    <!-- Single Blog Area  -->
+    <!--Blog Görsel-->
+    @foreach (var x in Model.Blog)
+    {
+        <div class="single-blog-area blog-style-2 mb-50">
+            <div class="single-blog-thumbnail">
+                <img src="@x.Image" alt="">
+                <div class="post-tag-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="post-date">
+                                    <a href="#">@x.Date.Day<span>@x.Date.ToString("MMMM")</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                @foreach (var x in Model.Blog)
+                {
+                    <div class="single-blog-area blog-style-2 mb-50">
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <a href="#" class="post-tag">@x.Categories.Hood</a>
+                            <h4><a href="#" class="post-headline mb-0">@x.Hood</a></h4>
+                            <div class="post-meta mb-50">
+                                <p><a href="@x.WriterID">@x.Writers.Name @x.Writers.SurName</a> Tarafından</p>
+                                <p>@x.Comments.Where(b => b.BlogID == x.ID).Count() yorum</p>
+                            </div>
+                            <p>@x.Explanation</p>
+
+                            <p>@x.Explanation</p>
+
+                            <p>@x.Explanation</p>
+                        </div>
+                    </div>
+                    <div class="blog-post-author mt-100 d-flex">
+                        <div class="author-thumbnail">
+                            <img src="@x.Writers.Image" alt="">
+                        </div>
+                        <div class="author-info">
+                            <div class="line"></div>
+                            <span class="author-role">Yazar</span>
+                            <h4><a href="/Writer/Index/@x.WriterID" class="author-name">@x.Writers.Name @x.Writers.SurName</a></h4>
+                            <p>@x.Writers.Email</p>
+                        </div>
+                    </div>
+                }
+                <!-- Comment Area Start -->
+                <!-- Yorumlar -->
+                <div class="comment_area clearfix mt-70">
+                    <h5 class="title">Yorumlar</h5>
+                    <ol>
+                        <li class="single_comment_area">
+                            @if (Model.Comment.Count() == 0)
+                            {
+                                <p>Yorum Bulunmamaktadır</p>
+                            }
+                            else
+                            {
+                                foreach (var item in Model.Comment)
+                                {
+                                    if (item.status == true)
+                                    {
+                                        <div class="comment-content d-flex">
+                                            <!-- Comment Author -->
+                                            <div class="comment-author">
+                                                <img src="@item.Member.profile" alt="author">
+                                            </div>
+                                            <!-- Comment Meta -->
+                                            <div class="comment-meta">
+                                                <a href="#" class="post-date">@item.Date.Value.ToString("dd MMMM yyyy")</a>
+                                                <p><a href="/Blog/Visitor/@item.MemberID" class="post-author">@item.Member.name @item.Member.surname</a></p>
+                                                <p>@item.Message</p>
+                                                <a href="#" class="comment-reply">Gönder</a>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>Yorum Bulunmamaktadır</p>
+                                    }
+                                }
+                            }
+                        </li>
+                    </ol>
+                </div>
+                <!-- Mesaj Gönder -->
+                <div class="post-a-comment-area mt-70">
+                    <h5>Cevap Bırakın</h5>
+                    <!-- Reply Form -->
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="group">
+                                    <input type="text" name="name" id="name" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Ad</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="group">
+                                    <input type="text" name="surname" id="surname" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Soyad</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="group">
+                                    <input type="email" name="email" id="email" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="group">
+                                    <input type="text" name="subject" id="subject" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Konu</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="group">
+                                    <textarea name="message" id="message" required></textarea>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Mesaj</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn original-btn">Gönder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @Html.Partial("~/Views/Shared/Partial/_PartialSidebar.cshtml")
+        </div>
+    </div>
+</div>
+}

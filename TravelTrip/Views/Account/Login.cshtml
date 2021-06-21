@@ -1,0 +1,59 @@
+﻿@model TravelTrip.Models.EntityFramework.Admins
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Giriş yapmak için oturum açın</p>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            <form action="../../index3.html" method="post">
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email", @placeholder = "Email" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password", @placeholder = "Şifre" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+                @ViewBag.Error
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Beni Hatırla
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Giriş</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        }
+        <p class="mb-1">
+            <a href="@Url.Action("ForgotPassword","Account")">Şifremi Unuttum</a>
+        </p>
+        <p class="mb-0">
+            <a href="@Url.Action("Register","Account")" class="text-center">Yeni bir üyelik</a>
+        </p>
+    </div>
+</div>
+
+

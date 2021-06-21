@@ -1,0 +1,90 @@
+﻿@model TravelTrip.Models.BlogAboutUs
+
+@{
+    ViewBag.Title = "Hakkımızda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model.AboutUs)
+{
+    <div class="breadcumb-area bg-img" style="background-image: url(@item.Image);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-content text-center">
+                        <h2>@ViewBag.Title</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-wrapper section-padding-100-0 clearfix">
+        <div class="container">
+            <div class="row align-items-end">
+                <!-- Single Blog Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single-blog-area clearfix mb-100">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <a href="#" class="post-tag">@item.SubTitle</a>
+                            <h4><a href="#" class="post-headline">@item.Hood</a></h4>
+                            <p class="mb-3">@item.Explanation.Substring(0, 520)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Blog Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single-blog-area clearfix mb-100">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content">
+                            <p class="mb-3">@item.Explanation.Substring(520, 612)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Blog Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-catagory-area clearfix mb-100">
+                        <img src="~/original-master/img/blog-img/1.jpg" alt="">
+                        <!-- Catagory Title -->
+                        <div class="catagory-title">
+                            <a href="#">Gezi Postları</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="blog-wrapper section-padding-100-0 clearfix">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Blog)
+            {
+                <!-- Single Blog Area  -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-area blog-style-2 mb-100">
+                        <div class="single-blog-thumbnail">
+                            <img src="@item.Image" alt="">
+                            <div class="post-date">
+                                <a href="#">@item.Date.ToString("dd") <span>@item.Date.ToString("MMMM")</span></a>
+                            </div>
+                        </div>
+                        <!-- Blog Content -->
+                        <div class="single-blog-content mt-50">
+                            <div class="line"></div>
+                            <a href="#" class="post-tag">Lifestyle</a>
+                            <h4><a href="Blog/Details/@item.ID" class="post-headline">@item.Hood</a></h4>
+                            <p>@item.Explanation.Substring(0, 100)</p>
+                            <div class="post-meta">
+                                <p><a href="Writer/Index/@item.WriterID">@item.Writers.Name @item.Writers.SurName</a> Tarafından</p>
+                                <p>@item.Comments.Where(x => x.BlogID == item.ID).Count() yorum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Blogs>
+
+@{
+    ViewBag.Title = "Category Sil";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+}
+
+@using (Html.BeginForm("CategoryDelete", "Admin", FormMethod.Post))
+{
+    if (Model.Count() == 0)
+    {
+        <h3>Bu kategoriye ait içerik bulunmamaktadır.</h3>
+    }
+    else
+    {
+        <table align="center" class="table table-bordered">
+            <thead>
+                <tr align="center">
+                    <th>#</th>
+                    <th>BAŞLIK</th>
+                    <th>YAZAR AD SOYAD</th>
+                    <th>TARİH</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <tr align="center">
+                        <td style="vertical-align: inherit;">@i</td>
+                        <td style="vertical-align: inherit;">@item.Hood</td>
+                        <td style="vertical-align: inherit;">@item.Writers.Name @item.Writers.SurName</td>
+                        <td style="vertical-align: inherit;">@item.Date.ToString("dd-MM-yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button type="submit" class="form-control btn btn-danger">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+
+    }
+}

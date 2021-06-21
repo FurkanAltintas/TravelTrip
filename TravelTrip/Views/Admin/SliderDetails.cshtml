@@ -1,0 +1,14 @@
+﻿@model TravelTrip.Models.EntityFramework.Sliders
+
+@{
+    ViewBag.Title = "Slider Detay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div align="center" class="form-group">
+    <h3><b>@Model.Hood</b></h3>
+    <h5>@Model.SubTitle</h5>
+    <img style="width: 1000px; height: auto;" src="@Model.Image" />
+    <a href="@Url.Action("Slider","Admin")" style="margin-top: 10px; width: 1000px; height: auto;" class="btn btn-danger">GERİYE DÖN</a>
+</div>
+

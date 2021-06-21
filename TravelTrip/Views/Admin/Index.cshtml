@@ -1,0 +1,180 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Comments>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<div class="content-wrapper">*@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.blog</h3>
+
+                        <p>İçerik Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="@Url.Action("Blog","Admin")" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.writer</h3>
+
+                        <p>Yazar Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="@Url.Action("Writer","Admin")" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.comments</h3>
+
+                        <p>Yorum Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="@Url.Action("Comments","Admin")" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.category</h3>
+
+                        <p>Kategori Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="@Url.Action("Category","Admin")" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+                <div class="card direct-chat direct-chat-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Doğrudan Chat</h3>
+
+                        <div class="card-tools">
+                            <span title="3 New Messages" class="badge badge-primary">@Model.Count()</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                                <i class="fas fa-comments"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="direct-chat-messages">
+                            @foreach (var item in Model)
+                            {
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">@item.Member.name @item.Member.surname</span>
+                                        <span class="direct-chat-timestamp float-right">@item.Date.Value.ToString("dd MMM hh:dd")</span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="@item.Member.profile" alt="message user image">
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        @item.Message
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                            }
+
+                            <div class="direct-chat-msg right">
+                                <div class="direct-chat-infos clearfix">
+                                    <span class="direct-chat-name float-right">Sarah Bullock</span>
+                                    <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                                </div>
+                                <!-- /.direct-chat-infos -->
+                                <img class="direct-chat-img" src="~/AdminLTE-3.1.0/dist/img/user3-128x128.jpg" alt="message user image">
+                                <!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                    Kod kısmı daha bitmedi. Cevap kısmı eklenilcek
+                                </div>
+                                <!-- /.direct-chat-text -->
+                            </div>
+                        </div>
+                        <!--/.direct-chat-messages-->
+                        <!-- Contacts are loaded here -->
+                        <div class="direct-chat-contacts">
+                            <ul class="contacts-list">
+                                @foreach (var item in Model)
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="@item.Member.profile" alt="User Avatar">
+
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    @item.Member.name @item.Member.surname
+                                                    <small class="contacts-list-date float-right">@item.Date.Value.ToString("dd/MM/yyyy")</small>
+                                                </span>
+                                                <span class="contacts-list-msg">@item.Message</span>
+                                            </div>
+                                            <!-- /.contacts-list-info -->
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <!-- /.contacts-list -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <form action="#" method="post">
+                            <div class="input-group">
+                                <input type="text" name="message" placeholder="Mesaja Cevap Ver" class="form-control">
+                                <span class="input-group-append">
+                                    <button type="button" class="btn btn-primary">Send</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@*</div>*@
+

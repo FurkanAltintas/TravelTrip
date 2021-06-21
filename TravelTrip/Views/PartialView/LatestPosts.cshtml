@@ -1,0 +1,27 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Blogs>
+
+<div class="sidebar-widget-area">
+    <h5 class="title">Son Gönderiler</h5>
+
+    <div class="widget-content">
+        <!-- Single Blog Post -->
+        @foreach (var item in Model)
+        {
+            <div class="single-blog-post d-flex align-items-center widget-post">
+                <!-- Post Thumbnail -->
+                <div class="post-thumbnail">
+                    <img src="@item.Image" alt="">
+                </div>
+                <!-- Post Content -->
+                <div class="post-content">
+                    <a href="#" class="post-tag">@item.Categories.Hood</a>
+                    <h4><a href="/Blog/Details/@item.ID" class="post-headline">@item.Hood</a></h4>
+                    <div class="post-meta">
+                        <p><a href="#">@item.Date.ToString("dd") @item.Date.ToString("MMMM")</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

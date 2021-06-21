@@ -1,0 +1,69 @@
+﻿@model TravelTrip.Models.EntityFramework.Footers
+
+@{
+    ViewBag.Title = "Footer Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("FooterAdd", "Admin", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4>FOOTER İŞLEM</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Hood, "BAŞLIK")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextBoxFor(model => model.Hood, new { @class = "form-control", @placeholder = "Başlık", @maxLength = "50" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Hood, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Explanation, "AÇIKLAMA")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextBoxFor(model => model.Explanation, new { @class = "form-control", @placeholder = "Alt Başlık", @maxLength = "50" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Image, "FOOTER RESMİ")
+            <div class="input-group">
+                @Html.TextBoxFor(x => x.Image, new { @type = "file", @name = "Image" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <div class="input-group">
+                @ViewBag.Error
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            <div class="input-group">
+                <a href="@Url.Action("Footer","Admin")" class="btn btn-facebook">GERİYE DÖN</a>
+
+                <button type="submit" class="btn btn-block bg-gradient-success btn-flat">EKLE</button>
+            </div>
+        </div>
+        <br />
+    </div>
+}
+

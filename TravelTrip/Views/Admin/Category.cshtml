@@ -1,0 +1,59 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Categories>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+}
+
+<table align="center" class="table table-bordered">
+    <thead>
+        <tr align="center">
+            <th>#</th>
+            <th>BAŞLIK</th>
+            <th>AÇIKLAMA</th>
+            <th>TARİH</th>
+            <th>DURUM</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr align="center">
+                <td style="vertical-align: inherit;">@i</td>
+                <td style="vertical-align: inherit;">@item.Hood</td>
+                <td style="vertical-align: inherit;">@item.Explanation</td>
+                <td style="vertical-align: inherit;">@item.Date.ToString("dd-MMMM-yyyy")</td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="badge bg-success">YAYINDA</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">KALDIRILDI</span>
+                    }
+                </td>
+                <td style="vertical-align: inherit;">
+                    <a href="/Admin/CategoryDetails/@item.ID" class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="/Admin/CategoryUpdate/@item.ID" class="btn btn-success">
+                        <i class="fas fa-pen-alt"></i>
+                    </a>
+                    <a href="/Admin/CategoryDelete/@item.ID" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("CategoryAdd","Admin")" class="form-control btn btn-success">
+    <i class="fas fa-plus"></i>
+</a>

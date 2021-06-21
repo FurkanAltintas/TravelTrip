@@ -1,0 +1,49 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Blogs>
+
+@{
+    ViewBag.Title = "Editör İçerikleri";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (Model.Count() > 0)
+{
+    <h2>Editör İçerikleri</h2>
+    foreach (var item in Model)
+    {
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="timeline">
+                            <div class="time-label">
+                                <span class="bg-red">@item.Date.ToString("dd MMM. yyyy")</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-envelope bg-blue"></i>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i>@item.Date.Hour:@item.Date.Minute</span>
+                                    <h3 class="timeline-header"><a href="/Blog/Details/@item.ID">@item.Hood</a></h3>
+                                    <div class="timeline-body">
+                                        <img src="@item.Image" style="width: 1500px;" />
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <a class="btn btn-primary btn-sm" href="/Blog/Details/@item.ID" style="margin-left: 8px;">Devamını Oku</a>
+                                        <a class="btn btn-danger btn-sm" href="/Admin/BlogDelete/@item.ID">Sil</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <i class="fas fa-clock bg-gray"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+else
+{
+    <h2>İçerik Bulunmamaktadır</h2>
+}

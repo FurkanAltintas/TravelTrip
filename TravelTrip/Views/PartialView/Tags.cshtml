@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TravelTrip.Models.EntityFramework.Categories>
+
+<div class="sidebar-widget-area">
+    <h5 class="title">Taglar</h5>
+    <div class="widget-content">
+        <ul class="tags">
+            @foreach (var item in Model)
+            {
+                <li><a href="/Blog/Category/@item.ID">@item.Hood.ToLower()</a></li>
+            }
+        </ul>
+    </div>
+</div>
+

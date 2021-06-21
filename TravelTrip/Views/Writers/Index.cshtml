@@ -1,0 +1,33 @@
+﻿@using TravelTrip.Models.EntityFramework
+@model List<Writers>
+
+@{
+    ViewBag.Title = "Yazarlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>YAZARLAR</h2>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <h3>Yazar bulunmamaktadır.</h3>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="author-thumbnail">
+                <img style="width: 72px; height: 72px;" src="@item.Image" alt="">
+            </div>
+            <div class="author-info">
+                <h4><a href="/Writer/Index/@item.ID" class="author-name">@item.Name @item.SurName</a></h4>
+                <p>@item.Email</p>
+            </div>
+        </div>
+        <br />
+    }
+}
+

@@ -1,0 +1,98 @@
+﻿@model TravelTrip.Models.EntityFramework.Writers
+
+@{
+    ViewBag.Title = "Yazar Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("WriterAdd", "Admin", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4>YAZAR İŞLEM</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Name, "ADI")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Adı", @maxLength = "50" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.SurName, "SOYADI")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextBoxFor(model => model.SurName, new { @class = "form-control", @placeholder = "Soyadı", @maxLength = "50" })
+            </div>
+            @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Email, "EMAIL")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @maxLength = "75" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.About, "HAKKINDA")
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                @Html.TextAreaFor(model => model.About, 10, 1, new { @class = "form-control", @placeholder = "Hakkında", @maxLength = "500" })
+            </div>
+            @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            @Html.LabelFor(model => model.Image, "RESMİ")
+            <div class="input-group">
+                @Html.TextBoxFor(x => x.Image, new { @type = "file", @name = "Image" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12">
+            <div class="input-group">
+                @ViewBag.Error
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <br />
+            <div class="input-group">
+                <a href="@Url.Action("Blog","Admin")" class="btn btn-facebook">GERİYE DÖN</a>
+
+                <button type="submit" class="btn btn-block bg-gradient-success btn-flat">EKLE</button>
+            </div>
+        </div>
+        <br />
+    </div>
+}
+
+
